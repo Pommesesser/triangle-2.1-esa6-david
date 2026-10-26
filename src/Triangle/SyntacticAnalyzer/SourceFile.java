@@ -18,6 +18,14 @@
 
 package Triangle.SyntacticAnalyzer;
 
+/**
+ * Reads a Triangle source file one character at a time and tracks the
+ * current line number.
+ *
+ * <p>If the file cannot be opened, the constructor does not throw;
+ * instead {@link #getCurrentLine()} returns {@code 0}. Callers must check
+ * for this before calling {@link #getSource()}.
+ */
 public class SourceFile {
 
   public static final char EOL = '\n';
@@ -27,6 +35,15 @@ public class SourceFile {
   java.io.FileInputStream source;
   int currentLine;
 
+  /**
+   * Opens the given file for reading.
+   *
+   * <p>
+   *     I DESPISE THIS STYLE OF ERROR HANDLING
+   * </p>
+   *
+   * @param filename path of the source file
+   */
   public SourceFile(String filename) {
     try {
       sourceFile = new java.io.File(filename);
@@ -40,6 +57,12 @@ public class SourceFile {
     }
   }
 
+  /**
+   * Reads the next character and advances the line counter on {@link #EOL}.
+   *
+   * @return the next character, or {@link #EOT} at end of file or on an I/O error
+   * @throws NullPointerException if the file failed to open
+   */
   char getSource() {
     try {
       int c = source.read();
@@ -57,6 +80,10 @@ public class SourceFile {
     }
   }
 
+  /**
+   * @return the 1-based number of the line being read, or {@code 0} if the
+   *         file failed to open
+   */
   public int getCurrentLine() {
     return currentLine;
   }

@@ -19,25 +19,26 @@
 package Triangle.SyntacticAnalyzer;
 
 /**
- * Represents a basic tuple of start and finish position.
- * It uses int to represent start and finish.
- * If I had access to a better type system I might consider using an unsigned integer type instead of int.
- * That depends on whether there is arithmetic on the source position tho... (overflow or underflow)
+ * The range of source lines a token or AST node covers.
+ *
+ * <p>Both fields are 1-based line numbers. {@code (0, 0)} means
+ * "no position".
  */
 public class SourcePosition {
 
+  /** First and last line of the range. */
   public int start, finish;
 
-  /**
-   * Initializes both to 0.
-   * Questionable sentinel value because 0 kinda carries meaning.
-   * Maybe a better approach is avoiding separate declaration and init???
-   */
+  /** Creates the "no position" value {@code (0, 0)}. */
   public SourcePosition() {
     start = 0;
     finish = 0;
   }
 
+  /**
+   * @param s first line of the range
+   * @param f last line of the range
+   */
   public SourcePosition(int s, int f) {
     start = s;
     finish = f;
