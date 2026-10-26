@@ -1,0 +1,46 @@
+CRC-Berechnung auf Basis von CRC-12
+===================================
+
+Autor: Tomislav Greguric
+
+weitere Gruppenmitglieder: Elif Tekes, Nabil Sayegh
+
+
+Programmbeschreibung:
+---------------------
+
+  Das vorliegende Programm "crc.tri" bzw. "crc.tam" berechnet zu
+  gegebenen Eingabedaten auf STDIN eine Checksumme.
+
+  Dazu werden jeweils nacheinander drei Bytes eingelesen und über
+  diese eine Checksumme nach dem CRC-12-Verfahren berechnet. Bei
+  weniger als drei Bytes werden die restlichen Bits mit Nullen
+  aufgefüllt. Als Ausgabe liefert das Programm eine kummulierte
+  Checksumme und (in Anlehnung an sum(1) und cksum(1)) die nach oben
+  gerundete Anzahl der 1k-Blöcke.
+
+  Derzeit werden die einzelnen CRC-12-Summen geXORt, so daß schnell
+  die größtmögliche Checksumme von 2^12-1=4095 entsteht. Eine Addition
+  würde auch nicht viel bringen, da dann Triangles "maxint" die
+  nächsthöhere Hürde wäre.
+
+  Da auch keine Bitoperationen möglich sind, wurden intern die Bits
+  als Array von Integer realisiert, natürlich mit der
+  stillschweigenden Bedingung, daß dabei nur Nullen und Einsen benutzt
+  werden dürfen.
+
+
+Beispiele:
+----------
+
+  tg@penguin1:~/crc-4/Triangle$ echo He | java TAM.Interpreter crc.tam
+  ********** TAM Interpreter (Java Version 2.1) **********
+  2032 1
+  
+  Program has halted normally.
+  tg@penguin1:~/crc-4/Triangle$ echo Hello | java TAM.Interpreter crc.tam
+  ********** TAM Interpreter (Java Version 2.1) **********
+  4095 1
+  
+  Program has halted normally.
+  tg@penguin1:~/crc-4/Triangle$

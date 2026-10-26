@@ -1,0 +1,14 @@
+Autor: Adrian Krion
+
+gauss.tri implementiert die Gauss-Elimination mit Spaltenpivotsuche
+für nicht-singuläre quadratische rationale Matrizen A der Größe n x n
+und löst ein Gleichungs- system der Form Ax=b. Eingabe von A und b
+spaltenweise durch einzelne Eingabe von jeweils Zähler und Nenner.
+Ausgabe von als Zeilenvektor.  n ist im Programm als Konstante
+definiert, in der vorkompilierten .tam-Datei ist n auf 4 gesetzt.
+Deshalb geht mit dieser auch nur Beispiel axb3.txt.
+
+Beispieldateien:
+axb1.txt : A 3x3-Einheitsmatrix, b Einsvektor
+axb2.txt : 3x3-Beispiel
+axb3.txt : 4x4-Beispiel

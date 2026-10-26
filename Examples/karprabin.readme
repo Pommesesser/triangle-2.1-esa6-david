@@ -1,0 +1,13 @@
+Titel: 		Karp-Rabin Algorithmus
+
+Autor:		Sven Mitlehner
+
+
+Funktion:
+
+Dieses Triangle Programm führt den Karp-Rabin Algorithmus aus. Karp-Rabin ist ein Algorithmus zum String-Matching. Die Aufgabe besteht darin, in einem längeren Text einen bestimmten Suchtext zu finden. Der Karp-Rabin spielt seine Performancevorteile vor allem bei der Suche nach mehreren verschiedenen Suchtexten aus. Daher kann im Programmcode die Anzahl der zu suchenden Fragmente variiert werden. In dieser Version ist der Karp-Rabin Algorithmus zum Finden von DNA-Sequenzen implementiert worden. Daher kommen im Suchtext nur die Zeichen A, C, G und T (stehen für die 4 Basen der DNA) vor. 
+Das Programm erzeugt zuerst eine Datei (Base.txt) mit einer zufälligen Basenfolge der Länge 1.000.000. Danach liest es diese Datei wieder ein und sucht nach Übereinstimmungen zwischen Fragmenten und Text. Für jede gefundene Übereinstimmung wird eine Zeile der Art "Found Pattern #1 (AGAATG) at 1 666" auf der Kommandozeile ausgegeben 
+
+Bedienung:
+
+Eingaben sind nicht nötig, der zufällige Textfile wird automatisch erzeugt. Alle Parameter sind im Programm hardcodiert und können dort geändert werden. Zum Kompilieren und Ausführen wird die Triangle-Version mit File-Support benötigt.

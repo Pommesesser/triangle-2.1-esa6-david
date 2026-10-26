@@ -1,0 +1,28 @@
+Gruppe:		Jan Sinschek
+		Benjamin Otto
+		Anselm Foehr
+
+
+* Programm "prime":
+
+  Autor: 	Anselm Foehr
+
+  Beschreibung: Das Programm findet einen Faktor der Eingabe (nicht zwingend prim) 
+		mit Hilfe des einfachen Pollard-Rho-Verfahrens.
+		Gerechnet wird auf dem Datentyp BigInt, dieser kann 32 Ziffern lang
+		werden.
+
+  Benutzung:
+		java Triangle/Compiler prime.tri
+		java TAM/Interpreter obj.tam
+		< Eingabe der zu faktorisierenden Zahl
+		> Ausgabe des ersten Primfaktors
+
+		Beispiel Eingabe: 177777
+		Beispiel Ausgabe: 9
+
+		Beispiel Eingabe: 6667
+		Beispiel Ausgabe: 59 
+
+		Beispiel Eingabe: 123451
+		Beispiel Ausgabe: 41 (dauert)

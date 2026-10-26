@@ -1,0 +1,21 @@
+Titel:			Das Sieb von Eratosthenes
+
+Autor:			Stefan Kropp
+
+Funktion:
+
+Dieses Triangle Programm implementiert eine Variante des Siebs von Eratosthenes
+zum Finden von Primzahlen bis zu einer oberen Schranke n.
+Es wurde eine Variante verwendet, die immmer nur einen Zahlenabschnitt der Größe
+UPPERBOUND (die Größe des Boolschen Arrays) bearbeitet. Dies war nötig, um die
+Restriktionen der Parametergröße zu umgehen. (übergebene Parameter dürfen nicht
+größer als 255 words groß sein) Jeder bearbeitete Abschnitt wird dann in die
+Datei geschrieben. Dies wird solange wiederholt, bis die obere Schranke n
+schließlich erreicht wurde.
+
+Bedienung:
+
+Es sind keine Eingaben nötig. Das Programm läuft selbstständig ab und schreibt
+alle gefundenen Primzahlen bis zur oberen Schranke MAXPRIM in die Datei prim.txt.
+Alle Parameter sind im Programm als Konstanten hardcodiert und können dort nach
+Belieben verändert werden. Es wird die Triangle Version mit File Support benötigt.

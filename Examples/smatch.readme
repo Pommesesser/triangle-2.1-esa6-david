@@ -1,0 +1,21 @@
+﻿Autor: Jens Huthmann
+
+Das Programm sucht nach den Stellen an denen der Suchstring im zu durchsuchenden Text auftaucht. Dies geschieht mit Hilfe des Karb-Rabin Algorithmus welcher mit Hashing arbeitet. (siehe http://zuseex.algo.informatik.tu-darmstadt.de/lehre/2006ss/bioinf/mat/lecture2-p4.pdf Folien 43-49)
+
+Die Länge des Suchstrings ist auf 500 Zeichen beschränkt und die Menge der Zeichen ist wiederum beschränkt auf {A-Z,a-z}. Der Suchstring wird als erstes eingegeben und mit Enter bestätigt.
+
+Der zu durchsuchende String darf unendlich lang sein ist
+
+
+
+Die Ausgabe gibt den Anfang an, an dem der Suchstring gefunden wurde. Die erste Stelle im String ist dabei 0.
+Bei einer Stelle größer 32767 (maxint) wird die Stelle in Form von Stelle div maxint*maxint+Stelle mod maxint ausgegeben. Hierdurch wird die Größe des Suchstrings auf 32767 * 32767 beschränkt. Dies sollte aber für alle unseren Zwecke genügen.
+
+
+Beispieleingabe
+
+bb		(Suchstring)
+aabbaabbaa	(Zu durchsuchender String)
+
+Ausgabe
+2,6,

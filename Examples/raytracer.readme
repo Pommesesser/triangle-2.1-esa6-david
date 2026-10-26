@@ -1,0 +1,41 @@
+Autor:
+	Sayegh, Nabil
+	
+Wunschgruppe:
+	Greguric, Tomislav
+	Tekes, Elif
+
+Funktion:
+	Es handelt sich um einen minimalst raytracer.
+	Es gibt eine Kugel, ein Fenster und einen Beobachter.
+	Reflektionen sind noch nicht implementiert und Leuchtquellen gibt es auch keine.
+
+	Der Raytracer wird wiederholt aufgerufen, gewissermassen als Animation.
+	Das Fenster entfernt sich vom Beobachter, dadurch sieht das Objekt groesser aus.
+
+Hilfsfunktionen:
+	Quadratwurzelberechnung (ganzzahlig)
+	Loesung quadratischer Gleichungen
+
+Bedienung:
+	Alle Parameter sind hardcoded, zwichen
+	!START EDITING HERE
+	und
+	!END EDITING HERE
+
+Beispieleingaben:
+	siehe Code
+	
+Erwartete Ausgabe:
+	3-Dimensionale Darstellungen der Kugel als (Pseudo-)Animation
+	Die Zahlenwerte geben die z-Koordinate an.
+	Bei einer Kugel erwarten wir, dass das Zentrum naeher am Beobachter ist, als die aeussen Bereiche,
+	d.h. in der Mitte muessen kleinere Zahlen sein als aussen.
+
+	Interessanterweise veraendert sich die Zahl im Mittelpunkt nicht,
+	das ist aber korrekt, schliesslich verschieben wir das Fenster, und nicht die Kugel!
+
+Bemerkung:
+	Da maxint leider nur 32768 betraegt, und Quadrierungen vorkommen,
+	koennen die Werte nur begrenzt vergroessert werden. Das laesst leider
+	auch keinen echten Spielraum fuer Fixpunkt schiebereien.

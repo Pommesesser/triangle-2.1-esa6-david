@@ -1,0 +1,69 @@
+###############################################################################
+########################## README Datei zu kdtree.tri ############################
+###############################################################################
+ 
+Inhalt
+======
+ 
+1. Autor des Programmes
+ 
+2. Funktion des Programmes
+ 
+3. Bedienung und Ablauf des Programmes
+ 
+4. Beispieleingaben und erwartete Ausgaben
+ 
+###############################################################################
+ 
+1.	Autor: Stephan Unkels
+ 
+###############################################################################
+ 
+2.	Funktion des Programmes
+ 
+	Das Programm erwartet eine Menge von 3D Punktdaten und erzeugt daraus eine
+	räumliche Datenstruktur, nämlich einen KD-Baum. Da die Daten als Float vorliegen,
+	werden sie mit 10000 multipliziert und der Rest einfach abgeschnitten. Da bei Triangle
+	der maximale Integer Wert bei 32767 liegt, war es nötig, eine "Klasse" Long zu 
+	implementieren, die auch von Karsten Bamber (Gruppenmitglied) verwendet wird. 
+	Allerdings in etwas abgewandelter Form.
+	Die Punktdaten werden dann je nach SplitAxis in zwei gleichgroße Teile unterteilt.
+	Dabei werden zuerst alle Punkte an der X-Achse geteilt, danach werden in jedem der
+	zwei neuen Teile alle Punkte an der Y-Achse geteilt usw..
+	Das Programm ist beendet, wenn die Punktmengen soweit unterteilt sind, dass in jedem Knoten
+	nur noch 5 Punkte liegen. Dies sind dann also die Blätter des Baumes.
+	
+	
+	Da das Programm mehr als 1024 Instructions und mehr als 1024Bytes auf dem 
+	Stack benötigt, muss der Compiler an folgenden Stellen geändert werden:
+	
+	TAM.Interpreter:
+	Zeile 31: static int[] data = new int[262144];
+	Zeile 39: HB = 262144;  // = upper bound of data array + 1
+	
+	
+	TAM.Machine:
+	Zeile 59: public static Instruction[] code = new Instruction[32768];
+	Zeile 66: PB = 32768,  // = upper bound of code array + 1
+    	Zeile 67: PT = 32796;  // = PB + 28
+
+	
+###############################################################################
+ 
+3.	Bedienung und Ablauf des Programmes
+ 
+	Das Programm wird mit "java blafasel < bunny.off" gestartet, damit die Punkte aus der
+	Datei eingelesen werden können. Weitere Eingaben vom Benutzer sind dann nicht
+	mehr nötig.
+	
+	Im geschickten Archiv befindet sich schon eine geänderte Compiler version.
+	Starten mit: run.bat kdtree.tri < bunny.off
+	
+	
+###############################################################################
+ 
+4.	Beispieleingaben und erwartete Ausgaben
+ 
+ 	Eingabe aus der angegebenen Textdatei.
+ 	Ausgabe ist die sortierte Punktmenge. 
+	

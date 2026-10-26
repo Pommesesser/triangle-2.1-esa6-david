@@ -1,0 +1,178 @@
+SAT-Solver von Patrick Frankenberger
+
+sat.tri löst das Erfüllbarkeitsproblem für beliebige Klauselmengen in konjunktiver Normalform mit dem Davis-Putnam Algorithmus und gibt eine Belegung der Variablen aus die die Klauselmenge erfüllt.
+
+Die Eingabedaten orientieren sich dabei am Format das in http://www.intellektik.informatik.tu-darmstadt.de/SATLIB/ verwendet wird, Kommentarzeilen werden nicht unterstützt, statt der Beschreibungszeile wird nur die Zahl der Variablen gelesen und als letzter Unterschied muss nach der letzten Klausel eof folgen.
+
+Wegen mangelnder Freispeicherverwaltung in Triangle sind die Obergrenzen der Anzahl der Variablen, Klauseln und Klausellängen im Programmtext fest eingetragen.
+Variablen: max 104
+Klauseln: max 550
+Klausellänge: max 4
+
+Weiterhin benötigt sat.tri eine Modifikation von TAM.Interpreter, da eine Speicherobergrenze von 1024 viel zu gering für sinnvolle Problemgrößen ist. Mit 15.000 funktioniert es, die angefügte Interpreter.java Version hat aber 63*1024 als Obergrenze.
+
+Je nach Eingabegröße und Schwierigkeit der Eingabe variiert die Laufzeit zwischen "sofort fertig" und "viele Minuten".
+
+Beispieleingabe (20 Variablen, 91 Klauseln):
+20 
+-14 -9 1 0
+6 11 -15 0
+13 12 -4 0
+-17 16 -3 0
+2 17 7 0
+5 -1 11 0
+9 20 19 0
+-17 13 16 0
+-12 -19 -18 0
+-6 19 14 0
+14 -12 -2 0
+-13 5 -16 0
+-16 4 9 0
+-13 15 9 0
+8 16 -5 0
+3 1 4 0
+-20 17 -6 0
+-12 -3 -16 0
+-10 -6 14 0
+4 18 -8 0
+-8 6 3 0
+12 -7 9 0
+-19 -18 -16 0
+-8 -17 5 0
+-16 -9 1 0
+18 -20 -8 0
+10 -19 9 0
+-5 15 -17 0
+-7 -6 5 0
+-5 10 2 0
+16 2 10 0
+17 12 -20 0
+11 -6 -7 0
+11 -18 5 0
+12 1 -7 0
+5 7 9 0
+-9 2 -5 0
+7 12 8 0
+-11 17 -2 0
+2 1 15 0
+-17 15 -6 0
+19 8 15 0
+18 -11 -8 0
+11 -15 13 0
+-10 18 19 0
+-14 20 6 0
+-9 -10 -16 0
+13 4 19 0
+-16 17 -14 0
+-17 -3 -15 0
+3 -7 17 0
+-18 11 20 0
+-18 -15 1 0
+15 -13 -7 0
+-19 8 -15 0
+8 7 -18 0
+10 8 4 0
+-12 -19 -1 0
+1 13 11 0
+-19 -20 -10 0
+4 2 1 0
+15 -17 18 0
+15 -17 4 0
+-7 8 -13 0
+12 9 -4 0
+9 4 18 0
+5 3 2 0
+1 -20 9 0
+13 2 -3 0
+18 19 -1 0
+12 -4 16 0
+6 -14 7 0
+12 20 9 0
+-10 19 -4 0
+9 3 -12 0
+7 -17 15 0
+-5 3 -20 0
+1 20 -9 0
+12 4 15 0
+-12 -11 -19 0
+6 -12 -7 0
+-11 -12 3 0
+1 -10 12 0
+-13 18 17 0
+8 -16 -3 0
+-12 -2 -19 0
+-11 1 -2 0
+17 -2 -8 0
+-17 -14 -7 0
+20 15 14 0
+-18 -8 -6 <eof>
+
+Beispielausgabe:
+91 clauses
+Testing 1
+Testing 2
+Testing 3
+Testing 4
+Testing 5
+Testing 6
+Testing 7
+Testing 8
+Testing 9
+Testing 7
+Testing 8
+Testing 9
+Testing 10
+Testing 8
+Testing 9
+Testing 10
+Testing 6
+Testing 5
+Testing 6
+Testing 7
+Testing 8
+Testing 7
+Testing 8
+Testing 9
+Testing 10
+Testing 8
+Testing 9
+Testing 4
+Testing 5
+Testing 6
+Testing 7
+Testing 8
+Testing 8
+Testing 9
+Testing 10
+Testing 11
+Testing 12
+Testing 13
+Testing 14
+Testing 15
+Testing 16
+Testing 17
+Testing 18
+Testing 19
+Testing 20
+Testing 21
+solution:
+1=T 
+2=T 
+3=F 
+4=T 
+5=T 
+6=T 
+7=F 
+8=T 
+9=T 
+10=F 
+11=F 
+12=F 
+13=T 
+14=T 
+15=T 
+16=T 
+17=T 
+18=F 
+19=T 
+20=F

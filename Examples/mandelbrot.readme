@@ -1,0 +1,83 @@
+Floating Point Library For Triangle
+===================================
+
+Author: Matthias Georgi
+Mail: matti.georgi@gmail.com
+
+This library provides routines for floating point calculation.
+For that purpose a Float record type is defined, which stores the mantisse
+and the exponent of a floating point number as integers. The sign of
+the number is recognized by the sign of the mantisse.
+
+type Float ~
+	record
+		mnt: Integer,
+		exp: Integer
+	end;
+
+As integers are represented by JAVA shorts, we have to store the mantisse
+in 15 bits. The exponent is calculated on the base of 2. So the value
+of a floating point number may be expressed like
+
+mantisse * 2 ^ exponent
+
+We define 4 public procedures for Floats, which do fundamental
+aritmetics:
+	
+	proc float(var x: Float, mnt: Integer, exp: Integer)
+	proc add(x: Float, y: Float, var result: Float)
+	proc sub(x: Float, y: Float, var result: Float)
+	proc mul(x: Float, y: Float, var result: Float)
+	proc div(x: Float, y: Float, var result: Float)
+
+These procedures perform normalization before and after processing.
+There is still some inaccuracy in the division algorithm.
+This can be fixed by rightshifting while testing
+the last bit for zero. I tried to satisfy the parser with no success
+(no language spec, just source code here).
+
+
+Mandelbrot Printer
+==================
+
+The program prints out a graphical representation of the mandelbrot set.
+The calculation is somewhat limited as we
+may overflow the Integer variables for large iterations.
+The parameters may be changed in source code.
+
+The algorithm was adopted from Wikipedia:
+
+For each pixel on the screen do:
+{
+  x = x0 = x co-ordinate of pixel
+  y = y0 = y co-ordinate of pixel
+
+  x2 = x*x
+  y2 = y*y
+ 
+  iteration = 0
+  maxiteration = 1000
+ 
+  while ( x2 + y2 < (2*2)  AND  iteration < maxiteration ) {
+ 
+    y = 2*x*y + y0
+    x = x2 - y2 + x0
+
+    x2 = x*x     
+    y2 = y*y
+
+    iteration = iteration + 1
+  }
+ 
+  if ( iteration == maxiteration )
+    colour = black
+  else
+    colour = iteration
+}
+
+
+Compilation:
+javac Triangle.Compiler mandelbrot.tri
+
+Run program:
+java TAM.Interpreter

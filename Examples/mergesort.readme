@@ -1,0 +1,17 @@
+Autorin:
+	Elif Tekes
+	
+Wunschgruppe:
+	Tomislav Greguric
+	Nabil Sayegh
+
+Erkl‰rungen zum Programm:
+
+Eingabe: Ein Array aus Integer-Werten mit maximaler L‰nge 80. 
+         Im Eingabefenster wird pro Zeile ein Element eingegeben.
+         WICHTIG: Beenden der Eingabe mit 0 (0 ist nicht Element des Arrays)
+         
+Das Array wird mit Hilfe vom MergeSort-Algorithmus sortiert und anschlieﬂend ausgegeben.
+
+
+

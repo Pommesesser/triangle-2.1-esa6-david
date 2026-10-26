@@ -1,0 +1,67 @@
+!
+! Implementation of several data types in Triangle by Boris Nickel, boris-nickel@web.de
+!
+! This is an excercise from A. Koch's Lecture "Optimierende Compiler",
+! summer term 2006 at TU Darmstadt / Germany, course homepage (German):
+! http://www.esa.informatik.tu-darmstadt.de/twiki/bin/view/Lectures/OptimierendeCompilerDe.html
+
+While for adding a for...next-loop a compiler modification is necessary, I thought
+adding some abstract datatypes and a few operations might me usefull for later use.
+
+The file datatypes.tri includes all the methods/functions/datatypes described below
+as well as a short main programm, representing a little test suite.
+For design I choosed mostly to use proc, because func allows to return expressions only.
+
+
+Here is a list of what I added so far:
+--------------------------------------
+
+
+- Datatype			String																						very basic string implementation: Triangle doesn't support variabe arrays, 
+																																	so this a simple fixed array of 80 chars, directly accessible with String.Str
+																																	Note: Each string must be terminated with a backslash \ by definition
+
+- Method				proc readstring(var strg: String)									reads a String from the keyboard into strg and terminates it correctly
+
+- Method				proc strcat(var str1: String, var str2: String)		Concatenate two strings: Add content of str2 to str1 -> str1 = str1str2
+
+- Method				proc putstring(var strg: String)									prints a string without the terminating \ to the std output
+
+- Method				proc strlen(strg: String, var length: Integer)		determines the length of a string and gives an integer output of the length
+
+- Method				proc strrev(var strg: String)											Reverses a string, strg = gtrs
+
+- Datatype			Date																							Represents a date. It's a record including Integers day, month and year, 
+																																	format ddmmyyyy is used
+
+- Datatype			Time																							Represents a time. It's a record including Integers hours, minutes and seconds, 
+																																	24hr format hh:mm:ss is used
+
+- Constructor		func createDate (day: Integer, month: Integer, year: Integer) : Date	- use this constructor to ensure a date has the corect format,
+																																	is a real date (and not 53th of May 2006 i.e.). If a wrong date is given, the date 
+																																	1.1.1000 is created instead. In later versions an error throwing and handling 
+																																	system should replace this behavior
+
+- Constructor		func createTime (hours: Integer, minutes: Integer, seconds: Integer) : Time - uns this constructor to ensure a time has the correct
+																																	format, is a real time (and not 54:26:99 i.e.). If a wrong time is given, the time
+																																	00:00:00 is created instead. See note at createDate.
+
+- Method 				proc putdate (inDate: Date)												Prints a formatted date to std out in format dd/mm/yyyy and adds leading zeros if 
+																																	day or month has just one digit
+
+- Method				proc puttime (inTime: Time, outtype: Integer)			Prints a formatted time to std out. Outtype specifies the format: 
+																																	If outtype = 1, an output in 24hr format is generated (hh:mm:ss), including leading
+																																	zeroes if any of the values has just one digit.
+																																	If outtype is != 1, an output in am/pm format is generated (hh:mm:ss am/pm), adding
+																																	leading zeros to minute and second only if necessary
+																																	
+- Method				proc diffdays(date1: Date, date2: Date, var output: Integer) - counts the number of days between to given dates. Output is 
+																																	|date1 - date2| = output, so output will always be a positive number of days,
+																																	regardless if date1 or date2 is the bigger one. This function does not take care
+																																	of leapyears (maybe added in the future)
+																																	
+																																	
+																																	
+
+
+[EOF]

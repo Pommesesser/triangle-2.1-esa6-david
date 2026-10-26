@@ -1,0 +1,49 @@
+Autor: 
+Patrick Sona
+
+Dieses Programm implementiert einen Heapsort-Algorithmus.
+Dieser wird auch einem Array ausgeführt, welches wegen 
+mangelnder Ressourcen nur 16 breit sein kann.
+Diese Implementierung des sortieralgorithmus ist so geschrieben,
+dass diese mit minimalen Änderungen jegliche "Objekte" sortieren 
+kann (Im beispiel wird ein String Nach dem ersten Buchstaben 
+sortiert).
+Es müssen folgende Felder und Methoden angepaßt werden:
+
+Arrayfeld des SortObj-type: Anstatt String den gewünschten Typ
+							  einsetzen
+Funktion getCompValue: 	  muß einen Integer-Wert zurückgeben, anhand
+						 	  verglichen werden kann
+Prozedur exchange:		  Temp-Varible "t" muß den entsprechenden
+							  Typ bekommen
+
+Der Sortiert-Algorithmus wird über die Methode sort() angestoßen.
+Ihr muss eine Variable vom Typ SortObj übergeben werden, in welcher
+die zu sortierenden Elemente abgelegt sind.
+
+
+Das beispielprogramm Arbeitet mit Strings.
+Zu beginn werden bis zu 16 Strings abgefragt, welche anschliessend
+Sortiert und ausgegeben werden. Die Eingabe kann durch wiederholtes
+"Eingabe" drücken abgebrochen werden.
+
+Beispiel Eingabe:
+koch
+huss
+buchmann
+eckert
+may
+ostermann
+steinmetz
+weihe
+
+Ausgabe:
+Sortierte Strings:
+
+buchmann
+eckert
+huss
+koch
+may
+ostermann
+steinmetz

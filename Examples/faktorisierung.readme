@@ -1,0 +1,167 @@
+Beschreibung des Programmes "Faktorisierung"
+
+Autor: Alexander Stolfik
+
+
+Funktion des Programmes:
+
+Das Programm zerlegt eine natürliche Zahl n, die zwischen 0 und 10^16 liegt,
+in Faktoren mit der folgenden Eigenschaft:
+
+1. Besitzt die Zahl n Primfaktoren, die kleiner als 200 sind, werden diese Primfaktoren
+   mit Ihren entsprechenden Exponenten in der Struktur Fz gespeichert.
+
+2. Falls diese Zahl noch Primfaktoren besitzt die größer zweihundert sind, werden
+   diese nicht mehr gepeichert, sondern nur der sogenannte Restfaktor.
+   Der Restfakor ist der Faktor der übrigbleibt, wenn mann alle Primfaktoren, 
+   die kleiner 200 sind, von n dividiert.
+
+Anmerkung: 	Der Algorithmus der die Faktoriesierung berechnet ist ein sehr primitiver
+		Algorithmus, aber ich denke für die Zwecke dieser Vorlesung ist er
+		gut geeignet.
+ 
+ Dies wird mit einer neuen Datenstruktur BigInt realsiert, auf der ich folgende Operationen
+ implementiert habe:
+ 	
+ 	
+ 	
+ 	proc convertBI(a: Integer, var  biga: BigInt)~
+ 	
+ 		Eingabe: a: Integer, biga:BigInt
+ 		Der Integer a wird in den BigInt biga geschrieben
+ 	
+ 	
+ 	
+ 	proc convertBI2(a: Integer, b: Integer, c: Integer, d: Integer, var  biga: BigInt)~
+ 	
+ 		Eingabe: a,b,c,d: Integer, biga:BigInt
+ 		
+ 		Die Integer a,b,c,d werden in einen BigInt nach folgender Vorschrift
+ 		convertiert:
+ 			
+ 			biga=(a mod 10000)*10^12 + (b mod 10000)*10^8 + (c mod 10000)*10^4 + (d mod 10000)
+ 	
+ 	
+ 	
+ 	proc zeigeBI(a: BigInt)~
+ 	
+ 		Ausgabe des BigInts a auf dem Bildschirm
+ 	
+ 	
+ 	
+ 	proc addBI(a: BigInt, b: BigInt,var erg: BigInt)~
+ 		
+ 		erg:=a+b;
+ 	
+ 	
+ 	proc copyBI(a: BigInt, var erg: BigInt)~
+ 	
+ 		erg:=a;
+ 		
+ 	
+ 	
+ 	proc modBI(a: BigInt, mod: Integer, var erg: Integer)~
+ 	
+ 		erg:=a // mod;
+ 	
+ 	
+ 	proc divBI(a: BigInt, div: Integer, var erg: BigInt)~
+ 	
+ 		erg:=a / div;
+ 	
+ 
+ 
+ 
+ Bedienung des Programmes:
+ 
+ Nach Start des Programmes, werden von dem Programm vier Zahlen gefragt, die zwischen
+ 0 und 9999 liegen können. Diese Vier Zahlen werden dann konkateniert und in einen BigInt
+ konvertiert.
+ 
+ Falls grösser Zahlen eingegeben werden, werden sie trotzdem Modulo 10000 gerechent, d.h.
+ solange man nicht den Wertebreich eines Integers überschreitet wird es keine Fehlermeldung
+ geben.
+ 
+ Als Ausgabe erhält man dann die Faktorzerlegung der Primzahlen unter 200, den Restfaktor
+ und die Eingabe angezeigt.
+ 
+ 
+ 
+ Beispieleingaben und erwartete Ausgaben:
+ 
+ 1. Beipspiel
+ 
+ Eingabe:
+ 1. :0
+ 2. :7
+ 3. :5891
+ 4. :2000
+ 
+ Ausgabe:
+ 
+ Faktorisierung:
+ p     	e
+ 2	10
+ 5	3
+ 7	2
+ 11	2
+ 
+ Restfaktor:
+ 1
+ 
+ Eingabe:
+ 7.5891.2000
+ 
+ 
+ 
+ 2. Beipspiel
+ 
+ Eingabe:
+ 1. :0
+ 2. :0
+ 3. :2398
+ 4. :37895642
+ 
+ Ausgabe:
+ 
+ Faktorisierung:
+ p     	e
+ 2	1
+ 3	1
+ 23	1
+ 179	1
+ 
+ Restfaktor:
+ 971
+ 
+ Eingabe:
+ 2398.5642
+ 
+ 
+ 
+ 3. Beipspiel
+ 
+ Eingabe:
+ 1. :0
+ 2. :1
+ 3. :0
+ 4. :0
+ 
+ Ausgabe:
+ 
+ Faktorisierung:
+ p     	e
+ 2	8
+ 5	8
+ 
+ 
+ Restfaktor:
+ 1
+ 
+ Eingabe:
+ 1.0000.0000
+ 
+ 
+ 
+  
+ 

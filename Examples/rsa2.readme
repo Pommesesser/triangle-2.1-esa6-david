@@ -1,0 +1,134 @@
+###############################################################################
+########################## README Datei zu rsa.tri ############################
+###############################################################################
+
+Inhalt
+======
+
+1. Autor des Programmes
+
+2. Funktion des Programmes
+
+3. Bedienung und Ablauf des Programmes
+
+4. Beispieleingaben und erwartete Ausgaben
+
+###############################################################################
+
+1.	Autor: Karsten Bamberg
+
+###############################################################################
+
+2.	Funktion des Programmes
+
+	Das Programm "rsa.tri" ist eine Implementierung des Public Key Verschlüs-
+	selungsverfahrens RSA. Es verschlüsselt Texte von bis zu 60 Zeichen Länge
+	in einer Art Blockchiffre, wobei immer 3 Zeichen des Klartextes in einen 
+	Schlüsseltextblock der Länge 4 kodiert werden. Das Eingabealphabet besteht
+	aus den 26 Kleinbuchstaben des deutschen Alphabets und dem Leerzeichen. 
+	Wird ein ungültiges Zeichen eingegeben, so ignoriert das Programm darauf 
+	folgende Eingaben. Nachdem die Verschlüsselung abgeschlossen ist besteht 
+	die Möglichkeit einen geheimen Schlüssel einzugeben, mit dem der gerade 
+	verschlüsselte Text wieder entschlüsselt wird.
+	
+	Das Programm verwendet eine Long-Datenstruktur, die aus 2 Integer-Werten,
+	einem low- und einem high-Teil, besteht. Diese Implementierung war nötig, 
+	um mit Zahlen rechnen zu können die größer als 32767 sind. Stephan Unkels 
+	verwendet in seinem Programm "kdtree.tri" ebenfalls die Long-Datenstruktur
+	in "voller" Form. In diesem Programm musste sie wegen der, durch den 
+	Compiler begrenzten Anzahl an Instruktionen auf die nötigsten Funktionen 
+	und Operationen reduziert werden und unterstützt nur noch positve Zahlen.
+	
+###############################################################################
+
+3.	Bedienung und Ablauf des Programmes
+
+	Nach dem Start erwartet das Programm die Eingabe des öffentlichen Schlüs-
+	sels, mit dem verschlüsselt werden soll. Der Schlüssel wird im Form von
+	zwei, durch ein Leerzeichen getrennten, Integer-Werten eingegeben. Die 
+	erste dieser Zahlen ist das Produkt n zweier Primzahlen p und q. Dieses
+	sollte für "rsa.tri" im Bereich von 20000 bis 32767 liegen. Die zweite Zahl
+	des Tupels ist der Verschlüsselungsexponent e. Für ihn muss gelten
+	1 < e < (p - 1) * (q - 1) und gcd(e, (p - 1) * (q - 1)) = 1, wobei gcd der
+	größte gemeinsame Teiler ist. Nach einem weiteren Leerzeichen folgt die 
+	Eingabe des zu verschlüsselnden Textes. Dieser kann bis zu 60 Zeichen lang 
+	sein. Die Eingabe wird mit "Return" oder "Enter" bestätigt. Das Programm
+	berechnet nun den Schlüsseltext und gibt diesen auf der Konsole aus. Danach
+	wird die nächste Eingabe vom Benutzer erwartet. Es muss wieder ein Tupel 
+	von zwei Integer-Werten eingegeben werden, nämlich noch einmal das Prim-
+	zahlenprodukt n, gefolgt vom geheimen Schlüssel d, mit dessen Hilfe der 
+	verschlüsselte Text wieder entschlüsselt werden soll. Auch für d muss gel-
+	ten	1 < d < (p - 1) * (q - 1). Berechnen kann man d aus der Gleichung 
+	d * e = 1 mod (p - 1) * (q - 1). Wenn man nur den öffentlichen Schlüssel
+	(n, e) kennt, kann man das nur dann, wenn man n faktorisieren kann.	
+	Nach Bestätigung der Eingabe mit "Return" oder "Enter" startet die Ent-
+	schlüsselung, der entschlüsselte Text wird auf der Konsole ausgegeben und 
+	das Programm wird beendet.
+	
+###############################################################################
+
+4.	Beispieleingaben und erwartete Ausgaben
+
+	Man wählt die Primzahlen p = 211 und q = 151. Es ergibt sich n = 31861. Als
+	Verschlüsselungsexponent wird e = 101 gewählt. Der zugehörige geheime 
+	Schlüssel ist d = 18401. Die Eingabe und Ausgabe auf der Konsole sieht 
+	folgendermaßen aus:
+	
+	============================================
+	31861 101 der erste mai ist frei			(n e Klartext)
+	
+	abrxa wo zgl nitamli ykm hlc d u			(Schlüsseltext)
+	
+	31861 18401									(n d)
+	der erste mai ist frei						(entschlüsselter Klartext)
+	============================================
+	
+	Mit falschem geheimen Schlüssel wird der Klartext nicht richtig dekodiert:
+	
+	============================================
+	31861 101 der erste mai ist frei
+	
+	abrxa wo zgl nitamli ykm hlc d u
+	
+	31861 15333
+	?abbxpcbo?vh~yu?vgeozlb
+	============================================
+	###########################################################################
+	
+	Ein Beispiel mit öffentlichem Schlüssel (n, e) = (20651, 10519) und 
+	geheimem Schlüssel d = 20263:
+	
+	============================================
+	20651 10519 compiler optimieren macht spass
+	
+	 wdk aqn ubt xbm efc tgq eii sjp lt  acy wuj
+	
+	20651 20263
+	compiler optimieren macht spass
+	============================================
+	
+	Mit falschem Schlüssel:
+
+	============================================
+	20651 10519 compiler optimieren macht spass
+	
+	 wdk aqn ubt xbm efc tgq eii sjp lt  acy wuj
+	
+	20651 12345
+	gcdrittfn{ggtec{ncp dvutgquostens
+	============================================
+	###########################################################################
+	
+	Weitere Beispiele für mögliche Schlüssel sind:
+	
+	(n, e) = (27317, 17), d = 6305
+	(n, e) = (29719, 73), d = 14873
+	(n, e) = (23183, 521), d = 2105
+	
+	Es können auch beliebige eigene Schlüssel verwendet werden, sofern sie die 
+	in Abschnitt 3 genannten Bedingungen für den öffentlichen und geheimen 
+	Schlüssel erfüllen. 
+
+###############################################################################
+##################### Ende der README Datei zu rsa.tri ########################
+###############################################################################

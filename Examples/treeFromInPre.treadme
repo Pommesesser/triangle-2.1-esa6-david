@@ -1,0 +1,21 @@
+REAMDE für treeFromInPre.tri v1.0
+
+Author: Thomas Heidenreich (c) 2006
+thh@rbg.informatik.tu-darmstadt.de
+----------------------------------
+
+Das Programm baut rekrusiv aus einer inorder und einer preorder 
+Traversierung einen korrekten Binärbaum auf.
+
+Der Baum wir in einem Array gehalten, wobei [1] die Wurzel ist. 
+[(i*2)] ist das linke Kind, [(i*2)+1] das rechte.
+
+Die inorder und preorder werden aus den Dateien in.txt und pre.txt 
+eingelesen, wobei jeweils ein Char für eine Knotenbezeichnung steht. 
+Diese dürfen nicht doppelt vergeben sein!!
+Daraus folgt, dass es maximal so viele Knoten wie verschiedene Chars 
+geben kann. Der Baum an sich ist auf 7 Ebenen (inklusive Wurzel) 
+beschränkt.
+
+Die Ausgabe erfolgt ebenenweise in ASCII mit _X_ für jeden Knoten
+wobei X die Knotenbezeichnung aus den Dateien ist.

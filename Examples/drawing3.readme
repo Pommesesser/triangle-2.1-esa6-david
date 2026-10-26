@@ -1,0 +1,8 @@
+Autor: Nicolas Weber
+
+Implementiert den Bresenham-Linien-Zeichnen-Algorithmus. Trickst ein bisschen,
+um mit Triangles kleinem Speicher zurechtzukommen. Gibt ein Bild im .pgm-Format
+auf stdin aus.
+
+Das Programm erzeugt immer die selbe Ausgabe, die in der Datei out.pgm
+beiliegt.

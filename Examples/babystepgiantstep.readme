@@ -1,0 +1,38 @@
+Autor:
+Benjamin Otto
+
+Funktion:
+Das Programm löst das Diskrete Logarithmus Problem g^x=a mod n
+mittels Shank's Baby-Step-Giant-Step Algorithmus
+
+Hilfsfunktion für Wurzel ziehen und erweiterten Euklid für Inversion inklusive
+
+Bedienung:
+Nach Start gibt man die Gruppenordnung n, die Basis g und das gewünschte Ergebnis a mod n ein. Das Programm berechnet nun x.
+Falls es kein solches x gibt(kann passieren, wenn g keine Primitivwurzel ist) gibt das Programm -1 als Ergebnis an.
+
+Beispiele
+Gruppenordnung : 14
+g : 3
+a : 5
+Loesung : 5
+
+also 3^5=5 mod 14
+
+
+Gruppenordnung : 181
+g : 179
+a : 2
+Loesung : 91
+
+also 179^91 = 2 mod 181
+
+
+Gruppenordnung : 9
+g : 3
+a : 4
+Loesung : -1
+
+nicht lösbar (3 ist teiler von 9)
+
+

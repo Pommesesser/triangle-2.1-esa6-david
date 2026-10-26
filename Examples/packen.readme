@@ -1,0 +1,72 @@
+###############################################################################
+########################## README Datei zu packen.tri ############################
+###############################################################################
+ 
+Inhalt
+======
+ 
+1. Autor des Programmes
+ 
+2. Funktion des Programmes
+ 
+3. Bedienung des Programmes
+ 
+4. Ablauf des Programmes
+ 
+###############################################################################
+ 
+1.	Autor: Fabian Marx
+ 
+###############################################################################
+
+2.	Funktion des Programms
+
+Meine Idee war es ein kleines Packprogramm zu schreiben. Dies war allerdings
+schwieriger als gedacht. Insbesondere musste ich in Triangle nicht vorhandene
+Funktionen nachbauen (z.B. Bitströme). Herausgekommen ist ein Programm,
+dass eine beliebig lange Datei (blockweise) einlesen kann, diese verarbeitet
+und das Ergebnis in die Ausgabe schreibt.
+
+###############################################################################
+
+3.	Bedienung des Programms
+
+java TAM.Interpreter packen.tri < readme.txt > out.txt
+
+
+################################################################################
+
+4.	Ablauf des Programms
+
+Für die Eingabe-Datei steht ein Char-Array zur Verfügung,
+in das 245 Byte eingelesen werden. Die Berechnung basiert auf 4-Bit-Codewörtern,
+die aus den Chars mit low und high extrahiert werden.
+
+Nur für den ersten Block wird dann folgendes ausgeführt:
+1. Es werden alle 4-Bit-Codewörter gezählt. Dies war ursprünglich für die Berechnung
+eines optimalen Huffmann-Codes gedacht. Der autmoatische Aufbau dieses Codes erwies
+sich allerdings als zu kompliziert, so dass ich nun einen statischen Code benutze.
+Diesen habe ich auf einem Blatt Papier erzeugt und die hier gezählten Häufigkeiten
+der Codewörter (für verschiedene Dateien) als Basis genommen.
+
+2. Um dennoch eine Optimierung in der Ausgabe zu erreichen, werden die Häufigkeiten
+sortiert und es entsteht eine Abbildung eines Codewortes auf den statischen
+Huffmann-Code (schließlich im array code). So wird ein optimaler Huffmann-Code
+approximiert.
+
+3. Diese Abbildung wird nun als erstes in die Ausgabe geschrieben.
+
+Nun beginnt die Verarbeitung jedes Eingabeblocks, indem die Code-Wörter jedes Chars
+mit low und high ausgelesen werden und mit writeBits der entsprechende Huffmann-code
+geschrieben wird. Zu bemerken ist dabei, dass die Prozedur putBit wie ein Bit-Buffer
+aggiert und ein char mittels put schreibt, sobald sich 8 Bit angesammelt haben.
+
+Mittels einer while-Schleife wird der Vorgang wiederholt, bis eof erreicht ist.
+Die gesamte Eingabe-Datei wurde so blockweise verarbeitet.
+
+Das Ergebniss der ganzen Prozedur hängt aber sehr stark von der Eingabedatei ab.
+Am besten funktionieren natürlich Textdateien.
+
+Nähere Beschreibungen finden sich in den Kommentierungen des Quelltextes.
+
+##########################################################################

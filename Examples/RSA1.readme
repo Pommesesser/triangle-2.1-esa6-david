@@ -1,0 +1,33 @@
+Autor: 
+Clayton Hoss
+
+Beschreibung:
+Dieses Programm implementiert den RSA-Algorithmus. Er verschlüsselt und 
+entschlüsselt eine Zahl mit der RSA Methode. Es werden 2 verschiendene 
+Exponentiationsalgorithmen verwendet. Einmal mittels schneller Exponentiation 
+und einer mittels einer simplen Schleife. Des weiteren werden auch 2 
+verschiedene gängigen Ansätze zur Entschlüsselung verwendet. Einmal den 
+Chinesischen Restsatz (CRT) und ein anderes mal die normale RSA Methode. Der 
+Entschlüsselungsexponent wird mittels Erweitertem Euclid berechnet. 
+
+Zur Änderung des Kryptoschlüssels muss man im Programm die Konstanten "p", "q" 
+und "e" ändern. "p" und "q" dürfen beliebige Primzahlen sein. "e" hingegen muss
+teilerfremd zum Produkt von p-1 mal q-1 sein (ggt von (p-1)*(q-1) und e ist 1).
+
+
+Eingaben und Ausgaben:
+Nach start des Programms, kann man eine ganze Zahl eingeben. Sie sollte kleiner 
+als p*q sein. Als Ausgabe zeigt einem das Programm die Verschlüsselte Zahl, 
+sowie das Ergebnis der Entschlüsselungen, mittels der beiden implementierten 
+Methoden, der verschlüsselten Zahl an. 
+
+Beispieleingaben und Ausgaben:
+(gilt nur für p = 13, q = 11 und e = 23)
+
+Eingabe: 
+54
+
+Ausgabe:
+Encrypted Number : 98
+Decrypted normally : 54
+Decrypted with CRT : 54

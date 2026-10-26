@@ -1,0 +1,65 @@
+Optimierende Compiler
+Aufgabe 1: Triangle
+
+Roboter-Programm
+
+Dateien:
+  - Robot.README
+  - Robot.tam
+  - Robot.tri
+  - RobotRun.tam
+  - RobotRun.tri
+
+Autor:
+Benjamin Schiller
+
+
+Es handelt sich hierbei um eine kleine Simulation eines Roboters, der sich in einer kleinen Welt, begrenzt durch Wnde / Hindernisse bewegt.
+Er kann Hütchen platzieren und aufsammeln.
+Die Idee bzw. das Prinzip stammt aus dem Grundstudium, wo wir einen Interpreter für KarelJRobot geschrieben haben, der die genannten Eigenschaften hatte.
+Damit das ganze nicht zu komplex wurde, sind einige Dinge stark vereinfacht:
+- An einer Stelle kann immer nur ein Hütchen stehen, weitere können aber darauf platziert werden.
+- Der Roboter kann beliebig viele Hütchen aufstellen und auch aufsammeln.
+- Die "globalen" Befehle überschreiben bereits vorhandenes, also Hütchen oder Wände
+
+Die "Welt"
+x - Wand / Hinderniss
+o - Hütchen
+R - Roboter
+B - Roboter, der auf einem Feld mit Hütchen steht
+
+ACHTUNG:
+Damit das Programm korrekt läuft, müssen in der Datei TAM.machine folgende Änderungen vorgenommen werden:
+TAM.Machine
+- Zeile 59: new Instruction[1024] -> new Instruction[2048]
+- Zeile 66: PB = 1024, -> PB = 2048,
+- Zeile 67: PT = 1052; -> PT = 2076;
+Diese Änderungen erhöhen die Anzahl der maximal möglichen Befehle in der Triangle-Datei und sollten allgemein verwendet werden können (also für alle Programm zu empfehlen).
+Leider war aufgrund der vielen Status-Meldungen und Test-Läufe (in RobotRun.) eine hohe Anzahl an Befehlen nicht zu vermeiden.
+
+In Robot.tri und Robot.tam befindet sich das eigendliche Programm. Hier kann der Benutzer einige Befehle ausführen, um die Welt zu verändern und den Roboter zu steuern.
+Diese sind im folgenden erläutert:
+# i beenden
+# Roboter-Befehle
+#   w: nach Norden bewegen
+#   s: nach Süden bewegen
+#   a: nach Westen bewegen
+#   d: nach Osten bewegen
+#   q: Hütchen aufnehmen
+#   e: Hütchen setzen
+# globale Befehle
+#   m: Wand / Hinernis setzen
+#   n: Hütchen setzen
+Die Größe der Welt muss zwischen 3 und 16 liegen (inklusive).
+Je nach Konsole / Betriebssystem haben sich in den Tests die Eingaben von der Konsole als problematisch erwiesen.
+Daher muss man manchmal ENTER drücken, bis man "Command:" sieht, dann kann man den Befehl eingeben.
+
+In RobotRun.tri und RobotRun.tam befindet sich eine abgeänderte Version des Programms, in der keine Eingaben des Benutzers notwendig sind.
+Es werden einfach einige Beispiel-Aktionen durchgeführt, um ein selbstständig durchlaufendes Programm zu erhalten.
+In der Variable session kann zwischen den Beispieln umgeschaltet werden.
+
+
+Ein- und Ausgaben
+Die Eingaben von Robot. wurden oben bereits beschrieben.
+Bei RobotRun. sind keine Eingaben möglich / nötig. Natürlich kann in RobotRun.tri ein weiteres Beispiel eingefügt werden.
+Die Ausgabe beider Programm besteht aus Status-Meldungen, welche Aktion durchgeführt wurde, evtl. Fehlermeldungen, wenn man z.B. versucht, den Roboter durch eine Wand zu steuern und der Ausgabe der Welt, die oben beschrieben wurde.

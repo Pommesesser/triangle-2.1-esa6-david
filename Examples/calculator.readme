@@ -1,0 +1,26 @@
+!
+! Implementation of a simple calculator in Triangle by
+! - Alexander Constantin constant@rbg.informatik.tu-darmstadt.de
+! - Nico Rottstädt rottstae@rbg.informatik.tu-darmstadt.de
+!
+! This is an excercise from A. Koch's Lecture "Optimierende Compiler",
+! summer term 2006 at TU Darmstadt / Germany, course homepage (German):
+! http://www.esa.informatik.tu-darmstadt.de/twiki/bin/view/Lectures/OptimierendeCompilerDe.html
+!
+
+Erlaubte 1-stellige Operationen: - (Negation)
+Erlaubte 2-stellige Operationen: + (Addition)
+								 - (Subtraktion)
+								 * (Multiplikation)
+								 / (Division)
+
+Jede 2-stellige Operation muss mit Klammern umschlossen sein.
+
+Ein vernüftiger Fehlerzustand wurde noch nicht implementiert.
+Zum Beispiel wird bei einer unbekannten Operation 0 zurückgegeben.
+
+Beispiel:
+---------
+Term: ((1+2)*(-1+3))
+
+((1+2)*(-1+3)) = 6

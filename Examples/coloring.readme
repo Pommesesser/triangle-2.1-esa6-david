@@ -1,0 +1,57 @@
+Author: Simon Kulessa
+Version: 1.0
+
+Reads a nondirected graph from the command line and colors the graph
+with the minimum number of colors.
+
+<Input Format>
+Number of Nodes:		-	A number between 0 and 14
+Complete?			-	Whether the graph is complete or not
+Another Edge?			-   	'y' or 'Y' for another edge,
+					anything else to continue
+Node 1:				-   	A existing node id
+Node 2:				- 	A different existing node id
+
+A node id is a number between 0 and the number of nodes - 1.
+
+<Output Format>
+Minimum number of colors
+NodeId	ColorId		Number of Neighbours	List of Neighbours
+
+<Example 1>
+Number of nodes: 5
+Complete? y
+
+Graph succesfull colored with 5 color(s).
+0 1 4 [1, 2, 3, 4]
+1 4 4 [0, 2, 3, 4]
+2 3 4 [0, 1, 3, 4]
+3 5 4 [0, 1, 2, 4]
+4 2 4 [0, 1, 2, 3]
+
+<Example 2>
+Number of nodes: 5
+Complete? n
+Another edge? y
+Node 1: 0
+Node 2: 1
+Another edge? y
+Node 1: 0
+Node 2: 2
+Another edge? y
+Node 1: 1
+Node 2: 2
+Another edge? y
+Node 1: 2
+Node 2: 3
+Another edge? y
+Node 1: 2
+Node 2: 4
+Another edge? n
+
+Graph succesfull colored with 3 color(s).
+0 1 2 [1, 2]
+1 3 2 [0, 2]
+2 2 4 [0, 1, 3, 4]
+3 1 1 [2]
+4 1 1 [2]
