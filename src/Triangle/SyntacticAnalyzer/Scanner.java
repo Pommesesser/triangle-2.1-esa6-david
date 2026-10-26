@@ -20,13 +20,35 @@ package Triangle.SyntacticAnalyzer;
 
 import static Triangle.SyntacticAnalyzer.TokenKind.*;
 
+/**
+ * Lexical analyzer: turns the character stream from a {@link SourceFile}
+ * into {@link Token}s, one per call to {@link #scan()}.
+ *
+ * <p>Fun fact: the name "Scanner" for this component predates
+ * {@code java.util.Scanner} (Java 5, 2004); this code dates from 1999.
+ *
+ * <p>Streaming design: tokens are produced on demand for the
+ * {@link Parser} rather than collected into a list first. This is usually
+ * justified as saving memory, but the parser builds the whole AST anyway,
+ * so the saving is small. Mostly it lets scanning and parsing count as a
+ * single pass, so Triangle can be described as a three-pass compiler
+ * (syntactic analysis, contextual analysis, code generation).
+ *
+ * <p>Reserved words are not recognized here: they are returned as
+ * {@code IDENTIFIER} and reclassified in the {@link Token} constructor.
+ */
+// TODO: recognize reserved words explicitly in scanToken() instead of
+//  relying on the Token constructor to silently reclassify IDENTIFIER objects.
 public final class Scanner {
 
   private SourceFile sourceFile;
   private boolean debug;
 
+  /** One-character lookahead; always holds the next unconsumed character. */
   private char currentChar;
+  /** Spelling of the token being scanned. */
   private StringBuilder currentSpelling;
+  /** False while skipping separators, so {@link #takeIt()} discards them. */
   private boolean currentlyScanningToken;
 
   private boolean isLetter(char c) {
@@ -37,8 +59,7 @@ public final class Scanner {
     return (c >= '0' && c <= '9');
   }
 
-  // isOperator returns true iff the given character is an operator character.
-
+  /** Returns true iff the given character is an operator character. */
   private boolean isOperator(char c) {
     return (c == '+' || c == '-' || c == '*' || c == '/'
         || c == '=' || c == '<' || c == '>' || c == '\\'
@@ -46,8 +67,11 @@ public final class Scanner {
         || c == '?');
   }
 
-  ///////////////////////////////////////////////////////////////////////////////
-
+  /**
+   * Creates a scanner and reads the first character into the lookahead.
+   *
+   * @param source the opened source file to read from
+   */
   public Scanner(SourceFile source) {
     sourceFile = source;
     currentChar = sourceFile.getSource();
@@ -58,17 +82,20 @@ public final class Scanner {
     debug = true;
   }
 
-  // takeIt appends the current character to the current token, and gets
-  // the next character from the source program.
-
+  /**
+   * Appends the current character to the current token (unless skipping
+   * separators) and reads the next character from the source program.
+   */
   private void takeIt() {
     if (currentlyScanningToken)
       currentSpelling.append(currentChar);
     currentChar = sourceFile.getSource();
   }
 
-  // scanSeparator skips a single separator.
-
+  /**
+   * Skips a single separator: one whitespace character, or a comment
+   * starting with {@code !} and running to the end of the line.
+   */
   private void scanSeparator() {
     switch (currentChar) {
     case '!': {
@@ -86,6 +113,18 @@ public final class Scanner {
     }
   }
 
+  /**
+   * Consumes one token, appending its characters to {@link #currentSpelling}.
+   *
+   * <p>Operator characters are matched greedily, so {@code <=} or even
+   * {@code +-} become a single {@code OPERATOR}. A character literal
+   * accepts any quoted character, including a raw newline. At end of file
+   * nothing is consumed, so repeated calls keep returning {@code EOT}.
+   *
+   * <p>MAXIMAL MUNCH</p>
+   *
+   * @return the kind of the token, with reserved words still as {@code IDENTIFIER}
+   */
   private TokenKind scanToken() {
 
     switch (currentChar) {
@@ -190,6 +229,14 @@ public final class Scanner {
     }
   }
 
+  /**
+   * Skips separators and scans the next token.
+   *
+   * <p>{@code finish} is read after the lookahead has moved past the token,
+   * so a token at the end of a line gets {@code finish = start + 1}.
+   *
+   * @return the next token, or an {@code EOT} token at end of file
+   */
   public Token scan() {
     Token tok;
     SourcePosition pos;

@@ -98,6 +98,18 @@ final class Token {
   protected String         spelling;
   protected SourcePosition position;
 
+  /**
+   * Creates a token.
+   *
+   * <p>Watch out: if {@code kind} is {@code IDENTIFIER} and {@code spelling}
+   * is a reserved word, the token silently gets the reserved word's kind
+   * instead. This is where keywords are actually recognized, and nothing at
+   * the call site in {@link Scanner} hints at it.
+   *
+   * @param kind     the scanned kind; {@code IDENTIFIER} may be replaced
+   * @param spelling the token's text
+   * @param position the lines the token covers
+   */
   public Token(TokenKind kind, String spelling, SourcePosition position) {
     this.kind     = kind == TokenKind.IDENTIFIER ? TokenKind.getSpecificTokenForIdentifier(spelling) : kind; 
     this.spelling = spelling;

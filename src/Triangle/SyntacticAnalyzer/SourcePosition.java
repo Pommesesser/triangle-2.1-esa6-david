@@ -24,6 +24,12 @@ package Triangle.SyntacticAnalyzer;
  * <p>Both fields are 1-based line numbers. {@code (0, 0)} means
  * "no position".
  */
+// TODO: stop creating a (0, 0) placeholder and filling it in later.
+//  The Parser does `pos = new SourcePosition(); start(pos); ... finish(pos);`,
+//  so a half-initialized position exists in between, and in loops (e.g.
+//  parseCommand) the same object is mutated and shared by several AST nodes,
+//  so earlier nodes see later finish values. Construct positions once with
+//  both ends known, e.g. new SourcePosition(startLine, endLine).
 public class SourcePosition {
 
   /** First and last line of the range. */
